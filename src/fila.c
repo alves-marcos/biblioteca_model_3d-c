@@ -7,9 +7,9 @@
  *
  * Data de Criação: 30/10/2015
 
- * Última modificação: 30/10/2015
+ * Última modificação: 01/10/2015
  *
- * Descrição: Implementação do módulo da biblioteca fila encadeada de vertices/faces
+ * Descrição: Implementação do módulo fila encadeada de vertices/faces
  *
  *********************************************************************************
  */
@@ -17,6 +17,15 @@
 #include "fila.h" /* tFila, tNo, cria_fila, elementos_fila, insere_fila, remove_fila */
 #include <stdlib.h> /* NULL, malloc, calloc, free */
 #include <stdio.h> /* printf */
+
+/* copia um array do conteudo da fila - OBS: Função auxiliar não definida no fila.h */
+
+void copia_array(float *original, float *conteudo) {
+
+	int i = 0; /* indice p ofor */
+
+	for (i = 0; i < _size_conteudo; i++) original[i] = conteudo[i]; /* copiando o array passado por parametro para o da fila */
+}
 
 /* Criando fila */
 
@@ -27,15 +36,6 @@ int cria_fila(tFila *fila) {
 	fila->tamanho = 0; /* tamanho da fila inicializa */
 
 	return 1; /* retorna 1 informando que conseguiu criar */
-}
-
-/* copia um array do conteudo da fila */
-
-void copia_array(float *original, float *conteudo) {
-
-	int i = 0; /* indice p ofor */
-
-	for (i = 0; i < _size_conteudo; i++) original[i] = conteudo[i]; /* copiando o array passado por parametro para o da fila */
 }
 
 /* mostra todos os elementos da fila */
@@ -56,11 +56,13 @@ int elementos_fila(tFila fila, char tipo) {
 
 		if (tipo == 'F') {
 
-			for (i = 0; i <  _size_conteudo; i++) printf("f %.1f ", aux->conteudo[i]);
+			printf("\nf ");
+
+			for (i = 0; i <  _size_conteudo; i++) printf("%d ", (int) aux->conteudo[i]);
 		
 		} else if (tipo == 'V') {
 
-			printf("v %.8f %.8f %.8f", aux->conteudo[0],aux->conteudo[1], aux->conteudo[2]);
+			printf("\nv %.6f %.6f %.6f", aux->conteudo[0],aux->conteudo[1], aux->conteudo[2]);
 		
 		} else return 0;
 
@@ -102,6 +104,7 @@ int insere_fila(tFila *fila, float *conteudo) {
 
 	return 1; /* retorna 1 informando que conseguiu criar */
 }
+
 
 /* remove elemento da fila */
 

@@ -9,7 +9,7 @@
 
  * Última modificação: 30/10/2015
  *
- * Descrição: Definição do módulo da biblioteca fila encadeada de vertices/faces
+ * Descrição: Definição do módulo fila encadeada de vertices/faces
  *
  *********************************************************************************
  */

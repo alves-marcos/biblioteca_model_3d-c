@@ -1,7 +1,7 @@
 #include "fila.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "arquivo.h"
 
 int main(void) {
 
@@ -9,7 +9,7 @@ int main(void) {
 
 	cria_fila(&fila);
 
-	float dado[4];
+/*	float dado[4];
 
 	dado[0] = 3.3;
 
@@ -33,10 +33,17 @@ int main(void) {
 
 	dado2[3] = 03;
 
-
 	insere_fila(&fila, dado2);
 
 	elementos_fila(fila, 'F');
+
+	remove_fila(&fila); */
+
+	char cam[200] = "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj";
+
+	carrega_obj(&fila, 'V', cam);
+
+	elementos_fila(fila, 'V');
 
 	return 0;
 }
