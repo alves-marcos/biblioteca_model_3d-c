@@ -7,7 +7,7 @@
  *
  * Data de Criação: 31/10/2015
 
- * Última modificação: 31/10/2015
+ * Última modificação: 01/11/2015
  *
  * Descrição: Definição do módulo arquivo
  *
@@ -16,6 +16,10 @@
 
 #ifndef ARQUIVO_H
 #define ARQUIVO_H
+
+/* definição de constantes */
+
+#define MAX_CONTEUDO 8
 
 #include "fila.h" /* tFila, insere_fila */
 

@@ -7,7 +7,7 @@
  *
  * Data de Criação: 31/10/2015
 
- * Última modificação: 01/10/2015
+ * Última modificação: 01/11/2015
  *
  * Descrição: Implmentação do módulo arquivo
  *
@@ -19,6 +19,8 @@
 #include <stdio.h> /* fopen, fgetc */
 
 
+/* ====================== INICIO DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
+
 /* limpando array char */
 
 void limpando_array(int tamanho, char *vetor) {
@@ -28,6 +30,9 @@ void limpando_array(int tamanho, char *vetor) {
 	for (i = 0 ; i <  tamanho; i++) vetor[i] = '\0';
 }
 
+/* ====================== FIM DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
+
+
 /* carrega pontos do arquivo obj */
 
 int carrega_obj(tFila *fila, char tipo, char *caminho) {
@@ -36,62 +41,58 @@ int carrega_obj(tFila *fila, char tipo, char *caminho) {
 
  	arq = fopen(caminho, "r"); /* tentando abrir o arquivo de acordo com tamanho */
 
- 	char ch, ponto[10]; /* caractere a ser lido - ponto do arquivo */
+	char ch, ponto[10]; /* caractere a ser lido - ponto do arquivo */
 
  	int condicao = 0, contador = 0, indice_leitura = 0, tamanho_array = 0; /* contador até chegar ponto */
 
- 	float vertice[3]; /* array de coordernadas */
+ 	float vetor_conteudo[MAX_CONTEUDO];
 
  	if (arq == NULL) return 0; /* verifica se o arquivo foi encontrado ou não */
 
- 	if (tipo == 'V') {
+	while((ch = fgetc(arq)) != EOF) {
 
- 		while ((ch = fgetc(arq)) != EOF) {
+		if (tipo == 'V' && (ch == 'v' || ch == ' ')) contador++; /* caso seja fila de vertice */
+		
+		else if (tipo == 'F' && (ch == 'f' || ch == ' ')) contador++; /* caso seja fila de faces */
 
- 			if (ch == 'v' || ch == ' ') contador++; /* ultimos caracteres a serem lidos antes de iniciar os pontos */
+		else contador = 0; /* caso não tenha chegado no dois ultimos caracteres antes do ponto */
 
- 			else contador = 0; /* ainda ão chegou nos dois ultimos caracteres */
+		if (contador == 2 || condicao == 1) {
+			
+			if (ch != ' ') {
 
- 			if (contador == 2 || condicao == 1) {
+				ponto[indice_leitura] = ch; /* prencheendo array char com ponto */
 
- 				if(ch != ' ') {
+				indice_leitura++; /* incrementando os indices do array de leitura */
+			}
 
- 					ponto[indice_leitura] = ch; /* passa o caractere do primeiro ponto para o array */
+			if ((ch == '\n' || ch == ' ') && condicao == 1) { /* espaço e quebra de linha significa fim do ponto vai para o proximo */
 
- 					indice_leitura++; /* incrementa o indice do array de char com pontos */
+ 				vetor_conteudo[tamanho_array] = atof(ponto); /* transformando array de char em float */
 
- 				}
+ 				indice_leitura = 0; /* zerando o indice do array de char */
 
- 				if ((ch == '\n' || ch == ' ') && condicao == 1) { /* espaço significa fim do ponto vai para o proximo */
+ 				limpando_array(10, ponto); /* limpando o array */
 
- 					vertice[tamanho_array] = atof(ponto);
-
- 					indice_leitura = 0;
-
- 					limpando_array(10, ponto);
-
- 					tamanho_array++;
- 				}
-
- 				if (tamanho_array == 3) {
-
- 					_size_conteudo = sizeof(vertice) / sizeof(float);
-
- 					insere_fila(fila, vertice);
-
- 					tamanho_array = 0;
- 				}
-
- 				condicao = 1;
-
- 				if (ch == '\n') condicao = 0;
+ 				tamanho_array++; /* incrementando o array de float */
  			}
- 		}
 
- 	} else if (tipo == 'F') {
+			condicao = 1; /* condicao indica que estou na linha onde estão os pontos */
 
+			if (ch == '\n') { 
 
- 	} else return 0;
+				condicao = 0; /* significa que houve uma quebrra de linha onde devo passar p o proximo ponto */
+
+				_size_conteudo = tamanho_array; /* ajusto o tamanho do array que quero alocar de acordo com a demamanda */
+
+				insere_fila(fila, vetor_conteudo); /* insiro array na fila */
+
+				tamanho_array = 0; /* zero o tamanho do meu conteudo */
+			}
+		}
+	}
+
+	return 1;
 }
 
 

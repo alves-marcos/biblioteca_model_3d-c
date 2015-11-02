@@ -7,7 +7,7 @@
  *
  * Data de Criação: 30/10/2015
 
- * Última modificação: 01/10/2015
+ * Última modificação: 01/11/2015
  *
  * Descrição: Implementação do módulo fila encadeada de vertices/faces
  *
@@ -18,6 +18,8 @@
 #include <stdlib.h> /* NULL, malloc, calloc, free */
 #include <stdio.h> /* printf */
 
+/* ====================== INICIO DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
+
 /* copia um array do conteudo da fila - OBS: Função auxiliar não definida no fila.h */
 
 void copia_array(float *original, float *conteudo) {
@@ -26,6 +28,8 @@ void copia_array(float *original, float *conteudo) {
 
 	for (i = 0; i < _size_conteudo; i++) original[i] = conteudo[i]; /* copiando o array passado por parametro para o da fila */
 }
+
+/* ====================== FIM DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
 
 /* Criando fila */
 
