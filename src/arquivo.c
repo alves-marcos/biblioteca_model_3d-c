@@ -7,7 +7,7 @@
  *
  * Data de Criação: 31/10/2015
 
- * Última modificação: 01/11/2015
+ * Última modificação: 03/11/2015
  *
  * Descrição: Implmentação do módulo arquivo
  *
@@ -41,7 +41,7 @@ int carregaOBJ(tFila *fila, char tipo, char *caminho) {
 
  	arq = fopen(caminho, "r"); /* tentando abrir o arquivo de acordo com tamanho */
 
-	char ch, ponto[10]; /* caractere a ser lido - ponto do arquivo */
+	char ch, ch_anterior, ponto[10]; /* caractere a ser lido - ponto do arquivo */
 
  	int condicao = 0, contador = 0, indice_leitura = 0, tamanho_array = 0; /* contador até chegar ponto */
 
@@ -51,11 +51,24 @@ int carregaOBJ(tFila *fila, char tipo, char *caminho) {
 
 	while((ch = fgetc(arq)) != EOF) {
 
-		if (tipo == 'V' && (ch == 'v' || ch == ' ')) contador++; /* caso seja fila de vertice */
-		
-		else if (tipo == 'F' && (ch == 'f' || ch == ' ')) contador++; /* caso seja fila de faces */
+		if (tipo == ch) {
 
-		else contador = 0; /* caso não tenha chegado no dois ultimos caracteres antes do ponto */
+			ch_anterior = ch; /* caractere anterior igual a espaco */
+
+			if (contador == 0) contador++;
+		
+		} else if (ch == ' ') {
+
+			if (ch_anterior == tipo) contador++;
+
+			else contador = 0;
+		
+		} else {
+
+			ch_anterior = '\0';
+
+			contador = 0; /* caso não tenha chegado no dois ultimos caracteres antes do ponto */
+		}
 
 		if (contador == 2 || condicao == 1) {
 			
@@ -69,6 +82,8 @@ int carregaOBJ(tFila *fila, char tipo, char *caminho) {
 			if ((ch == '\n' || ch == ' ') && condicao == 1) { /* espaço e quebra de linha significa fim do ponto vai para o proximo */
 
  				vetor_conteudo[tamanho_array] = atof(ponto); /* transformando array de char em float */
+
+				printf("\n$ %s", ponto);
 
  				indice_leitura = 0; /* zerando o indice do array de char */
 

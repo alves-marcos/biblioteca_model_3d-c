@@ -58,13 +58,13 @@ int elementosFila(tFila fila, char tipo) {
 
 	while (aux != NULL) { /* enquanto não chegar ao fim da fila */
 
-		if (tipo == 'F') {
+		if (tipo == 'f') {
 
 			printf("\nf ");
 
 			for (i = 0; i <  _size_conteudo; i++) printf("%d ", (int) aux->conteudo[i]);
 		
-		} else if (tipo == 'V') {
+		} else if (tipo == 'v') {
 
 			printf("\nv %.6f %.6f %.6f", aux->conteudo[0],aux->conteudo[1], aux->conteudo[2]);
 		
