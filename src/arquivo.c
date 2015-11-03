@@ -82,9 +82,7 @@ int carregaOBJ(tFila *fila, char tipo, char *caminho) {
 			if ((ch == '\n' || ch == ' ') && condicao == 1) { /* espaço e quebra de linha significa fim do ponto vai para o proximo */
 
  				vetor_conteudo[tamanho_array] = atof(ponto); /* transformando array de char em float */
-
-				printf("\n$ %s", ponto);
-
+			
  				indice_leitura = 0; /* zerando o indice do array de char */
 
  				limpandoArray(10, ponto); /* limpando o array */

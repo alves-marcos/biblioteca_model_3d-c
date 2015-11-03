@@ -19,7 +19,7 @@
 
 #define COORDENADAS 3
  
-#define CAMINHO "C:\\Users\\Marcos Alves\\Documents\\cube.obj"
+#define CAMINHO "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj"
 
 
 /* lista de face e vertice que vai ser alocada dinamicamente */

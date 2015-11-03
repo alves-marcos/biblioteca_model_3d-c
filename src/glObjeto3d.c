@@ -16,7 +16,7 @@
 
 #include "glObjeto3d.h"
 #include "arquivo.h" /* tFila, cria_fila, insere_fila, remove_fila, carrega_obj */
-//#include <GL/glut.h> /* funções da GL e glut */
+#include <GL/glut.h> /* funções da GL e glut */
 #include <stdlib.h> /* free, calloc, NULL */
 #include <stdio.h>
 
@@ -49,7 +49,7 @@ void listaPontos(void) {
 
 	criaFila(&vertice);
 
-	carregaOBJ(&vertice, 'V', CAMINHO);
+	carregaOBJ(&vertice, 'v', CAMINHO);
 
 	alocandoMemoria(vertice.tamanho);
 
@@ -63,10 +63,32 @@ void listaPontos(void) {
 
 		_ponto[i][2] = aux->conteudo[2];
 
-		printf("\nFace (%d) # %.6f %.6f %.6f", i+1, _ponto[i][0], _ponto[i][1], _ponto[i][2]);
+		//printf("\nFace (%d) # %.6f %.6f %.6f", i, _ponto[i][0], _ponto[i][1], _ponto[i][2]);
 
 		aux = aux->proximo;
 	}
+
+/*	tFila faces;
+
+	int j = 0;
+
+	criaFila(&faces);
+
+	carregaOBJ(&faces, 'f', CAMINHO);
+
+	tNo *auxiliar = faces.inicio;
+
+	for(i = 0; i < faces.tamanho; i++) {
+
+		for(j = 0; j < _size_conteudo; j++) {
+
+			int indice = (int) auxiliar->conteudo[j] - 1;
+
+			printf("\nProblem (%d) - %.6f %.6f %.6f", indice, _ponto[indice][0], _ponto[indice][1], _ponto[indice][2]);
+		}
+
+		auxiliar = auxiliar->proximo;
+	}  */
 
 	liberaFila(&vertice);
 }
@@ -78,7 +100,7 @@ void listaPontos(void) {
 /* desenha linha do cubo de acordo com os pontos passado */
 
 void glObjeto3dCubo(float escala) {
-/*
+
 	tFila faces;
 
 	int i = 0, j = 0;
@@ -87,7 +109,7 @@ void glObjeto3dCubo(float escala) {
 
 	criaFila(&faces);
 
-	carregaOBJ(&faces, 'F', CAMINHO);
+	carregaOBJ(&faces, 'f', CAMINHO);
 
 	tNo *auxiliar = faces.inicio;
 
@@ -95,9 +117,9 @@ void glObjeto3dCubo(float escala) {
 
 		glScalef(escala, escala, escala);
 
-		glBegin(GL_LINES);
+		glBegin(GL_TRIANGLES);
 
-		*	for(i = 0; i < faces.tamanho; i++) {
+			for(i = 0; i < faces.tamanho; i++) {
 
 				for(j = 0; j < _size_conteudo; j++) {
 
@@ -105,11 +127,12 @@ void glObjeto3dCubo(float escala) {
 
 					glVertex3f(_ponto[indice][0], _ponto[indice][1], _ponto[indice][2]);
 
-					auxiliar = auxiliar->proximo;
 				}
-			} *
+
+				auxiliar = auxiliar->proximo;
+			} 
 
 		glEnd();
 
-	glPopMatrix(); */
+	glPopMatrix(); 
 }

@@ -27,7 +27,7 @@ int main(void) {
 
 	elementosFila(fila, 'v'); 
 
-//	listaPontos();
+	listaPontos();
 
 	return 0;
 }
