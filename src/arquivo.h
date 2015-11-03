@@ -36,9 +36,9 @@
   ========================================================================================
 */
 
-extern int carrega_obj(tFila *fila, char tipo, char *caminho); /* carrega pontos do arquivo de extensão (.obj) e passa p fila */
+extern int carregaOBJ(tFila *fila, char tipo, char *caminho); /* carrega pontos do arquivo de extensão (.obj) e passa p fila */
 
-extern int carrega_x3d(tFila *fila, char tipo, char *caminho); /* carrega pontos do arquivo de extensão (.x3d) e passa p fila */
+extern int carregaX3D(tFila *fila, char tipo, char *caminho); /* carrega pontos do arquivo de extensão (.x3d) e passa p fila */
   
 
 #endif //ARQUIVO_H

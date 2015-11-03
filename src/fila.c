@@ -22,7 +22,7 @@
 
 /* copia um array do conteudo da fila - OBS: Função auxiliar não definida no fila.h */
 
-void copia_array(float *original, float *conteudo) {
+void copiaArray(float *original, float *conteudo) {
 
 	int i = 0; /* indice p ofor */
 
@@ -33,7 +33,7 @@ void copia_array(float *original, float *conteudo) {
 
 /* Criando fila */
 
-int cria_fila(tFila *fila) {
+int criaFila(tFila *fila) {
 
 	fila->inicio = NULL; /* inicio da fila */
 
@@ -44,7 +44,7 @@ int cria_fila(tFila *fila) {
 
 /* mostra todos os elementos da fila */
 
-int elementos_fila(tFila fila, char tipo) {
+int elementosFila(tFila fila, char tipo) {
 
 	tNo *aux; /* auxiliar para nao perder a referência para o ínicio */
 
@@ -80,7 +80,7 @@ int elementos_fila(tFila fila, char tipo) {
 
 /* insere elemento na fila */ 
 
-int insere_fila(tFila *fila, float *conteudo) {
+int insereFila(tFila *fila, float *conteudo) {
 
 	tNo *novoNo; /* ponteiro com novoNo a ser alocado */
 
@@ -90,7 +90,7 @@ int insere_fila(tFila *fila, float *conteudo) {
 
 	novoNo->conteudo = calloc( _size_conteudo, sizeof(float)); /* alocando espaço para o array de conteúdo */
 
-	copia_array(novoNo->conteudo, conteudo); /* adiciona ao array de conteúdo o valor passado por parametro */
+	copiaArray(novoNo->conteudo, conteudo); /* adiciona ao array de conteúdo o valor passado por parametro */
 
 	/* ##### Caso a Fila estiver vazia ##### */
 
@@ -109,10 +109,16 @@ int insere_fila(tFila *fila, float *conteudo) {
 	return 1; /* retorna 1 informando que conseguiu criar */
 }
 
+/* liberando espaço da fila */
+
+int liberaFila(tFila *fila) {
+
+	while (fila->inicio != NULL) removeFila(fila);
+}
 
 /* remove elemento da fila */
 
-int remove_fila(tFila *fila) {
+int removeFila(tFila *fila) {
 
 	tNo *aux = fila->inicio; /* referência para incio da lista */
 

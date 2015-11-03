@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "arquivo.h"
+#include "glObjeto3d.h"
 
 int main(void) {
 
-	tFila fila;
+/*	tFila fila;
 
 	cria_fila(&fila);
 
-/*	float dado[4];
+	float dado[4];
 
 	dado[0] = 3.3;
 
@@ -37,13 +38,15 @@ int main(void) {
 
 	elementos_fila(fila, 'F');
 
-	remove_fila(&fila); */
+	remove_fila(&fila); *
 
-	char cam[200] = "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj";
+	char cam[200] = "C:\\Users\\Marcos Alves\\Documents\\cube.obj";
 
-	carrega_obj(&fila, 'V', cam);
+	carregaOBJ(&fila, 'V', cam);
 
-	elementos_fila(fila, 'V');
+	elementosFila(fila, 'V'); */
+
+	listaPontos();
 
 	return 0;
 }

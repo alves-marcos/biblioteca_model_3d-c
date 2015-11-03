@@ -7,7 +7,7 @@
  *
  * Data de Criação: 30/10/2015
 
- * Última modificação: 30/10/2015
+ * Última modificação: 03/11/2015
  *
  * Descrição: Definição do módulo fila encadeada de vertices/faces
  *
@@ -57,12 +57,14 @@ typedef struct {
   ========================================================================================
 */
 
-extern int cria_fila(tFila *fila); /* cria a fila */
+extern int criaFila(tFila *fila); /* cria a fila */
 
-extern int elementos_fila(tFila fila, char tipo); /* retorna todos os elementos existentes na fila */
+extern int elementosFila(tFila fila, char tipo); /* retorna todos os elementos existentes na fila */
 
-extern int insere_fila(tFila *fila, float *conteudo); /* index indica qual fila irá ser feita a inserção insere elemento*/
+extern int insereFila(tFila *fila, float *conteudo); /* index indica qual fila irá ser feita a inserção insere elemento*/
 
-extern int remove_fila(tFila *fila); /* remove o qualquer elemento da fila a partir da posição */
+extern int liberaFila(tFila *fila); /* libera todo espaço alocado para fila */
+
+extern int removeFila(tFila *fila); /* remove o qualquer elemento da fila a partir da posição */
 
 #endif //FILA_H

@@ -23,7 +23,7 @@
 
 /* limpando array char */
 
-void limpando_array(int tamanho, char *vetor) {
+void limpandoArray(int tamanho, char *vetor) {
 
 	int i = 0;
 
@@ -35,7 +35,7 @@ void limpando_array(int tamanho, char *vetor) {
 
 /* carrega pontos do arquivo obj */
 
-int carrega_obj(tFila *fila, char tipo, char *caminho) {
+int carregaOBJ(tFila *fila, char tipo, char *caminho) {
 
 	FILE *arq = NULL; /* ponteiro para buscar */
 
@@ -72,7 +72,7 @@ int carrega_obj(tFila *fila, char tipo, char *caminho) {
 
  				indice_leitura = 0; /* zerando o indice do array de char */
 
- 				limpando_array(10, ponto); /* limpando o array */
+ 				limpandoArray(10, ponto); /* limpando o array */
 
  				tamanho_array++; /* incrementando o array de float */
  			}
@@ -85,14 +85,14 @@ int carrega_obj(tFila *fila, char tipo, char *caminho) {
 
 				_size_conteudo = tamanho_array; /* ajusto o tamanho do array que quero alocar de acordo com a demamanda */
 
-				insere_fila(fila, vetor_conteudo); /* insiro array na fila */
+				insereFila(fila, vetor_conteudo); /* insiro array na fila */
 
 				tamanho_array = 0; /* zero o tamanho do meu conteudo */
 			}
 		}
 	}
 
+	fclose(arq); /* fechando arquivo */
+
 	return 1;
 }
-
-
