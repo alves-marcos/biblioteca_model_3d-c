@@ -19,7 +19,7 @@
 
 #define COORDENADAS 3
  
-#define CAMINHO "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj"
+#define MACACO "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj"
 
 
 /* lista de face e vertice que vai ser alocada dinamicamente */
@@ -32,9 +32,8 @@ float **_ponto;
 
   ========================================================================================
 */
-void listaPontos(void) ;
 
-void glObjeto3dCubo(float escala); /* desenha linhas de um cubo */
+void glObjeto3dMacaco(float escala); /* desenha linhas de um cubo */
 
 
 #endif //GLOBJETO3D_H

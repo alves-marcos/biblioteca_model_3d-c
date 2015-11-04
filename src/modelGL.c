@@ -57,7 +57,7 @@ void drawWindow(void) {
 
 	//glutWireTeapot(30.0f); /* desenha um decagono */
 
-	glObjeto3dCubo(10);
+	glObjeto3dMacaco(50);
 
 	glutSwapBuffers(); /* mesma função da glFlush diferença que estamos tratando com mais de um tela logo mais um buffer de Imagem*/
 }
@@ -76,7 +76,11 @@ void renderWindow(GLsizei width, GLsizei height) {
 
 	switch(projection_type) {
 
-		case ORTHO: break;
+		case ORTHO: 
+
+			glOrtho(100.0f, -100.0f, 100.0f, -100.0f, 0.1f, 100);
+
+			break;
 
 		case PERSPECTIVE:
 
@@ -91,7 +95,7 @@ void renderWindow(GLsizei width, GLsizei height) {
 
 	glLoadIdentity(); /* reinicia o sistema de coordenadas do modelo */
 
-	gluLookAt(0, 50, -70, 0, 0, 0, 0, 1, 0); /* parametros onde o observador está (eixox, eixoy, eixoz) = (0, 50, -150),
+	gluLookAt(0, 0, -50, 0, 0, 0, 0, 1, 0); /* parametros onde o observador está (eixox, eixoy, eixoz) = (0, 50, -150),
 										
 										     para onde ele está olhando (centerx, centery, centerz) = (0, 0, 0) (ORIGEM), 
 
@@ -106,5 +110,5 @@ void init(void) {
 
 	angle = 45; /* definindo o angulo */
 
-	projection_type = PERSPECTIVE; /* definindo qual tipo de projeção vai iniciar */
+	projection_type = ORTHO; /* definindo qual tipo de projeção vai iniciar */
 }

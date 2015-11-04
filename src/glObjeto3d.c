@@ -7,18 +7,17 @@
  *
  * Data de Criação: 02/11/2015
 
- * Última modificação: 03/11/2015
+ * Última modificação: 04/11/2015
  *
  * Descrição: Implementação do módulo glObjeto3d
  *
  *********************************************************************************
  */
 
-#include "glObjeto3d.h"
+#include "glObjeto3d.h" /* _glObjetoMacaco _ponto */
 #include "arquivo.h" /* tFila, cria_fila, insere_fila, remove_fila, carrega_obj */
 #include <GL/glut.h> /* funções da GL e glut */
 #include <stdlib.h> /* free, calloc, NULL */
-#include <stdio.h>
 
 /* ====================== INICIO DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
 
@@ -41,17 +40,19 @@ void liberandoMemoria(int tamanho_array) {
 	free(_ponto);
 }
 
-void listaPontos(void) {
+int listaPontos(char *caminho) {
 
 	tFila vertice;
 
-	int i = 0;
+	int i = 0, tam_lista = 0;
 
 	criaFila(&vertice);
 
-	carregaOBJ(&vertice, 'v', CAMINHO);
+	carregaOBJ(&vertice, 'v', caminho);
 
 	alocandoMemoria(vertice.tamanho);
+
+	tam_lista = vertice.tamanho;
 
 	tNo *aux = vertice.inicio;
 
@@ -63,59 +64,39 @@ void listaPontos(void) {
 
 		_ponto[i][2] = aux->conteudo[2];
 
-		//printf("\nFace (%d) # %.6f %.6f %.6f", i, _ponto[i][0], _ponto[i][1], _ponto[i][2]);
-
 		aux = aux->proximo;
 	}
 
-/*	tFila faces;
-
-	int j = 0;
-
-	criaFila(&faces);
-
-	carregaOBJ(&faces, 'f', CAMINHO);
-
-	tNo *auxiliar = faces.inicio;
-
-	for(i = 0; i < faces.tamanho; i++) {
-
-		for(j = 0; j < _size_conteudo; j++) {
-
-			int indice = (int) auxiliar->conteudo[j] - 1;
-
-			printf("\nProblem (%d) - %.6f %.6f %.6f", indice, _ponto[indice][0], _ponto[indice][1], _ponto[indice][2]);
-		}
-
-		auxiliar = auxiliar->proximo;
-	}  */
-
 	liberaFila(&vertice);
+
+	return tam_lista;
 }
 
 /* ====================== FIM DAS FUNCOES NAO DEFINIDAS NO MODULO ============================ */
 
 
 
-/* desenha linha do cubo de acordo com os pontos passado */
+/* desenha linha do macaco de acordo com os pontos passado */
 
-void glObjeto3dCubo(float escala) {
+void glObjeto3dMacaco(float escala) {
 
 	tFila faces;
 
-	int i = 0, j = 0;
+	int i = 0, j = 0, tamanho_array = 0;
 
-	listaPontos();
+	tamanho_array = listaPontos(MACACO);
 
 	criaFila(&faces);
 
-	carregaOBJ(&faces, 'f', CAMINHO);
+	carregaOBJ(&faces, 'f', MACACO);
 
 	tNo *auxiliar = faces.inicio;
 
 	glPushMatrix();
 
 		glScalef(escala, escala, escala);
+
+		glPolygonMode(GL_FRONT_AND_BACK , GL_LINE);
 
 		glBegin(GL_TRIANGLES);
 
@@ -135,4 +116,8 @@ void glObjeto3dCubo(float escala) {
 		glEnd();
 
 	glPopMatrix(); 
+
+	liberandoMemoria(tamanho_array);
+
+	liberaFila(&faces);
 }
