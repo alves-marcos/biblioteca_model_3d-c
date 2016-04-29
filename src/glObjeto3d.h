@@ -19,7 +19,7 @@
 
 #define COORDENADAS 3
  
-#define MACACO "C:\\Users\\Marcos Alves\\Documents\\monkey_head2.obj"
+#define MACACO "../objetos_model/monkey_head2.obj"
 
 
 /* lista de face e vertice que vai ser alocada dinamicamente */
